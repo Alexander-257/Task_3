@@ -27,7 +27,9 @@ public class game {
             } else {
                 if (args.length >= 3 & args.length % 2 != 0) {
                     try {
-                        byte[] hmacSha256 = Igruxa.calcHmacSha256("secret123".getBytes("UTF-8"), se.getBytes("UTF-8"));
+                        SecureRandom random = new SecureRandom();
+                        Integer key = random.nextInt();
+                        byte[] hmacSha256 = Igruxa.calcHmacSha256(key.toString().getBytes("UTF-8"), se.getBytes("UTF-8"));
                         System.out.println(String.format("HMAC: %032x", new BigInteger(1, hmacSha256)).toUpperCase(Locale.ROOT));
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
@@ -69,7 +71,7 @@ public class game {
         SecretKey secretKey = keyGen.generateKey();
         String s = new BigInteger(1, secretKey.getEncoded()).toString(16);
 
-        int EnemyMove = random.nextInt(arguments.length);;
+        int EnemyMove = random.nextInt(arguments.length);
         String prediction = null;
         int situatuinCase = -1, LenD = arguments.length / 2;
         if(playerMove == EnemyMove) { situatuinCase = 0; }
