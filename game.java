@@ -29,7 +29,7 @@ public class game {
                     try {
                         SecureRandom random = new SecureRandom();
                         Integer key = random.nextInt();
-                        byte[] hmacSha256 = Igruxa.calcHmacSha256(key.toString().getBytes("UTF-8"), se.getBytes("UTF-8"));
+                        byte[] hmacSha256 = game.calcHmacSha256(key.toString().getBytes("UTF-8"), se.getBytes("UTF-8"));
                         System.out.println(String.format("HMAC: %032x", new BigInteger(1, hmacSha256)).toUpperCase(Locale.ROOT));
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
